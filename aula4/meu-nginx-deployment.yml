@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: meu-nginx
+  labels:
+    system: axmister
+    namespace: repenok
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - image: nginx:1.7.9
+          imagePullPolicy: Always
+          name: meu-nginx
+          ports:
+            - containerPort: 80
+              protocol: tcp
+      nodeSelector:
+        system: axmister
+
